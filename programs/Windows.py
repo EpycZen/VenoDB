@@ -98,3 +98,31 @@ def list_directories():  # returns the directories as a string
     result = subprocess.check_output("dir /b/ ad", shell=True)  # returns all the directories inside a parent directory
 
     return str(result.decode('utf-8'))
+
+
+def init():
+    installation_directory()
+    os.chdir(installation_dir)
+    folders = ["data", "log", "programs"]
+    files_in_programs = ["VenoDBv1.py", "Windows.py", "INSTALLATION_DIRECTORY.txt"]
+
+    folder_list = str(subprocess.check_output("dir /b /a-d", shell=True).decode('utf-8'))
+
+    os.chdir(installation_dir + "\\programs")
+    file_list = str(subprocess.check_output("dir /b /ad", shell=True).decode('utf-8'))
+
+    for folder in folders:
+        if folder not in folder_list:
+            os.chdir(installation_dir)
+            os.mkdir(folder)
+
+    p = 0
+    for file in files_in_programs:
+        if file in file_list:
+            p += 1
+        
+        else:
+            p = 0
+
+    if p == 3:
+        return True
