@@ -191,7 +191,8 @@ def list_db_files(cmd, comm):  # to list the databases/the files inside them
 
     if "files" == comm[5:10]:
         log1 = "List files in " + database_name
-        if list_files(database_name) != -1:
+        ch = list_files(database_name)
+        if ch != -1:
             list_file = list_files(database_name)
 
             file_list = list(list_file.replace("\r", "").replace(".csv", "").split("\n"))
@@ -199,6 +200,10 @@ def list_db_files(cmd, comm):  # to list the databases/the files inside them
 
             print("Files in " + database_name + " :")
             print(*file_list, sep='\n')
+            print(len(file_list) + " file(s)")
+
+        elif ch == -1:
+            print("0 file(s)")
 
     else:
         log1 = "List databases"
@@ -237,6 +242,7 @@ def insert(cmd1, cmd):  # to insert values into a file
     else:
         values_list = list(values.split(","))
 
+    print(values_list)
     cddir("data")
     if os.path.isfile(file_name):
         fle = open(file_name, 'a', newline='')  # open the file
@@ -417,6 +423,7 @@ def drop_database(database_name):  # to drop a database(including the files)
 
 # WORKS
 def drop_file(file_name, database_name):  # to drop a file(including the structure)
+    file_name += ".csv"
     cddir("data\\" + database_name)
     os.system("del " + file_name)
     print(file_name, "deleted from", database_name)
@@ -434,7 +441,7 @@ def delete_record(cmd):  # to delete a record using a provided condition
 def program_exit():  # to exit the dbms
     log1 = "Exit"
     log_activity(log1)
-    sys.exit()
+    exit()
 
 
 # WORKS
@@ -458,13 +465,13 @@ def show_license():  # to show the GNU General Public License Version 3 from the
 def command_parser():  # to parse the commands and call the appropriate functions
     try:
         print()
-        true_comm = input(">>> ")
-        comm_list = true_comm.split(" ")
+        comm = input(">>> ")
+        comm_list = comm.split(" ")
 
-        comm = true_comm.rsplit()
+        # comm = true_comm
 
         # take the first token of the command and check if it matches any command
-        token1 += comm_list[0]
+        token1 = comm_list[0]
 
         if "list" == token1[0:4]:
             list_db_files(comm_list,comm)
@@ -506,11 +513,12 @@ def command_parser():  # to parse the commands and call the appropriate function
             delete_record(token1[7:])
             pass
 
-        elif "drop" == token1[0:4]:
-            if "database" in token1[5:13]:
+        elif "drop" == comm[0:4]:
+            # drop file file_name database_name
+            if "database" in comm[5:13]:
                 drop_database(database_name=comm_list[-1])
 
-            elif "file" in token1[5:9]:
+            elif "file" in comm[5:9]:
                 drop_file(file_name=comm_list[-2], database_name=comm_list[-1])
 
             else:

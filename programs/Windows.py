@@ -29,6 +29,8 @@ def color(str1):  # for selecting the color on the command prompt screen
 
 def installation_directory():  # to set the installation directory from a file
     try:
+        os.chdir("programs")
+        print(subprocess.check_output("dir", shell=True))
         f = open("INSTALLATION_DIRECTORY.txt", "r")
         lines = f.readlines()
         for line in lines:
@@ -39,6 +41,7 @@ def installation_directory():  # to set the installation directory from a file
 
                 global installation_dir
                 installation_dir += line[startq:endq]
+                break
 
     except FileNotFoundError:
         print("[Error: IDNF] INSTALLATION_DIRECTORY.txt not found. Refer documentation for more help")
@@ -89,8 +92,12 @@ def list_files(database_name):  # returns the files in a directory as a string
         return -1
 
     else:
-        result = subprocess.check_output("dir /b /a-d", shell=True)  # returns all the files in "data" folder
-        return str(result.decode('utf-8'))
+        try:
+            result = subprocess.check_output("dir /b /a-d", shell=True)  # returns all the files in "data" folder
+            return str(result.decode('utf-8'))
+
+        except subprocess.CalledProcessError:
+            return -1
 
 
 def list_directories():  # returns the directories as a string
@@ -102,14 +109,22 @@ def list_directories():  # returns the directories as a string
 
 def init():
     installation_directory()
-    os.chdir(installation_dir)
+    print(installation_dir)
+    try:
+        os.chdir(installation_dir)
+
+    except OSError:
+        print("Please check INSTALLATION_DIRECTORY.txt")
+        pause()
+        exit()
+
     folders = ["data", "log", "programs"]
     files_in_programs = ["VenoDBv1.py", "Windows.py", "INSTALLATION_DIRECTORY.txt"]
 
-    folder_list = str(subprocess.check_output("dir /b /a-d", shell=True).decode('utf-8'))
+    folder_list = str(subprocess.check_output("dir /b /ad", shell=True).decode('utf-8'))
 
     os.chdir(installation_dir + "\\programs")
-    file_list = str(subprocess.check_output("dir /b /ad", shell=True).decode('utf-8'))
+    file_list = str(subprocess.check_output("dir /b /a-d", shell=True).decode('utf-8'))
 
     for folder in folders:
         if folder not in folder_list:
