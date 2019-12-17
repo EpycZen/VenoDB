@@ -200,7 +200,7 @@ def list_db_files(cmd, comm):  # to list the databases/the files inside them
 
             print("Files in " + database_name + " :")
             print(*file_list, sep='\n')
-            print(len(file_list) + " file(s)")
+            print(len(file_list), "file(s)")
 
         elif ch == -1:
             print("0 file(s)")

@@ -27,3 +27,8 @@
 14:00:14: List files in test
 14:07:05: List databases
 14:07:56: List databases
+14:09:10: Database test created
+14:09:12: List databases
+14:09:17: File test1.csv created in test
+14:09:22: List files in tst
+14:09:44: List files in test
