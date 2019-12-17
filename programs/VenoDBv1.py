@@ -538,19 +538,22 @@ def syntax_error(comm):
 
 # WORKS
 def main():
-    # display some info on the screen and do some preparations to the program :)
-    clear()
-    print("\n###################################################################################################")
-    print(" VenoDB - Copyright (C) 2019 EpycZen")
-    print(" This program comes with ABSOLUTELY NO WARRANTY; for details type `license\'.")
-    print(" This is free software, and your are welcome to redistribute it under certain conditions;")
-    print()
-    print(" All commands are CaSe-SeNsItIvE")
-    print(" View README.md for some info")
-    print("###################################################################################################")
-    while True:
-        command_parser()
+    if init():
+        # display some info on the screen and do some preparations to the program :)
+        clear()
+        print("\n###################################################################################################")
+        print(" VenoDB - Copyright (C) 2019 EpycZen")
+        print(" This program comes with ABSOLUTELY NO WARRANTY; for details type `license\'.")
+        print(" This is free software, and your are welcome to redistribute it under certain conditions;")
+        print()
+        print(" All commands are CaSe-SeNsItIvE")
+        print(" View README.md for some info")
+        print("###################################################################################################")
+        while True:
+            command_parser()
+
+    else:
+        program_exit()
 
 
-installation_directory()
 main()
