@@ -213,7 +213,11 @@ def list_db_files(cmd, comm):  # to list the databases/the files inside them
         database_list.pop(-1)
 
         print("Databases :")
-        print(*database_list, sep='\n')
+        if len(database_list) == 0:
+            print("0 database(s)")
+        
+        else:
+            print(*database_list, sep='\n')
 
     log_activity(log1)
 
