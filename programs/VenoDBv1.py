@@ -246,7 +246,6 @@ def insert(cmd1, cmd):  # to insert values into a file
     else:
         values_list = list(values.split(","))
 
-    print(values_list)
     cddir("data")
     if os.path.isfile(file_name):
         fle = open(file_name, 'a', newline='')  # open the file
@@ -522,7 +521,7 @@ def command_parser():  # to parse the commands and call the appropriate function
             if "database" in comm[5:13]:
                 drop_database(database_name=comm_list[-1])
 
-            elif "file" in comm[5:9]:
+            elif "table" in comm[5:10]:
                 drop_file(file_name=comm_list[-2], database_name=comm_list[-1])
 
             else:
