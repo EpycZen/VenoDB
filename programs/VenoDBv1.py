@@ -1,6 +1,7 @@
 ###################################################################################################
 # A Python based CSV DBMS
 # Copyright (C) 2019 EpycZen
+# https://github.com/EpycZen/VenoDB
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
