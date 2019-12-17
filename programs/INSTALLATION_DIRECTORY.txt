@@ -1,4 +1,4 @@
 # add your installation directory
 # example - C:\Program Files\VenoDB
 
-installation_dir = `your installation directory here'
+installation_dir = `C:\Users\mnsan\Downloads\VenoDB'

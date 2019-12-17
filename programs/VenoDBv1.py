@@ -458,9 +458,10 @@ def show_license():  # to show the GNU General Public License Version 3 from the
 def command_parser():  # to parse the commands and call the appropriate functions
     try:
         print()
-        comm = input(">>> ")
-        comm_list = comm.split(" ")
-        token1 = ""
+        true_comm = input(">>> ")
+        comm_list = true_comm.split(" ")
+
+        comm = true_comm.rsplit()
 
         # take the first token of the command and check if it matches any command
         token1 += comm_list[0]

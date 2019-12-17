@@ -7,6 +7,8 @@ Support for linux will be made(soon) with slight changes to the main program and
 Commands are used as input.
 Users, Security and Network Connectivity will be implemented in version 2.
 
+Don't forget to change the INSTALLATION_DIRECTORY.txt
+
 Structure Tree:
 VenoDB
 - data # database folder
