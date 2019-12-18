@@ -452,7 +452,7 @@ def drop_file(file_name, database_name):  # to drop a file(including the structu
 
 # PARTIAL
 def delete_record(comm, comm_list):  # to delete a record using a provided condition
-    # delete [*, *, value, *, value] file_name database_name
+    # delete [value list] file_name database_name
     database_name = comm_list[-1]
     file_name = comm_list[-2] + ".csv"
     cddir("data\\" + database_name)
@@ -474,7 +474,12 @@ def delete_record(comm, comm_list):  # to delete a record using a provided condi
 
     if len(values_list) == len(headings):
         with open(file_name, "r", newline='') as src:
-            lines = csv.reader
+            rdr = csv.reader(src, dialect='myDialect')
+            lines = list(rdr)
+
+        for key, line in enumerate(lines):
+            if values_list == line:
+                lines.pop(key)
 
     else:
         print("The number of values given does not the match the number of columms")
