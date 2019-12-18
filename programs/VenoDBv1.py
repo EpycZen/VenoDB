@@ -465,7 +465,7 @@ def delete_record(comm, comm_list):  # to delete a record using a provided condi
     values = comm[startb:endb + 1]
     values = values.replace(", ", ",")
 
-    values_list = values_list.strip("][").split(",")
+    values_list = values.strip("][").split(",")
 
     with open(file_name, "r", newline='') as f:
         rdr = csv.reader(f, dialect='myDialect')
@@ -473,20 +473,29 @@ def delete_record(comm, comm_list):  # to delete a record using a provided condi
         headings = column[0]
 
     if len(values_list) == len(headings):
-        with open(file_name, "r", newline='') as src:
+        with open(file_name, "r", newline='') as src:  # to read the file
             rdr = csv.reader(src, dialect='myDialect')
             lines = list(rdr)
 
-        for key, line in enumerate(lines):
+        print(lines)
+
+        for key, line in enumerate(lines):  # to delete the given records
             if values_list == line:
                 lines.pop(key)
+
+        res = open(file_name, "w", newline='')  # to write the modified records
+        wtr = csv.writer(res, dialect='myDialect')
+        wtr.writerows(lines)
+        res.close()
+
+        log1 = str(values_list) + " removed from " + file_name + "\\" + database_name
 
     else:
         print("The number of values given does not the match the number of columms")
         log1 = file_name + "\\" + database_name + ": delete row failed"
 
-    log1 = cmd
     log_activity(log1)
+    return
 
 
 # WORKS
@@ -563,7 +572,7 @@ def command_parser():  # to parse the commands and call the appropriate function
             pass
 
         elif "delete" == token1[0:6]:
-            delete_record(token1[7:])
+            delete_record(comm, comm_list)
             pass
 
         elif "drop" == comm[0:4]:
