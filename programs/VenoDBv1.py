@@ -469,7 +469,8 @@ def show_license():  # to show the GNU General Public License Version 3 from the
 def command_parser():  # to parse the commands and call the appropriate functions
     try:
         print()
-        comm = input(">>> ")
+        comm = input("VenoDB> ")
+        comm = comm.strip()
         comm_list = comm.split(" ")
 
         # comm = true_comm
