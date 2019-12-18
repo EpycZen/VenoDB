@@ -492,7 +492,7 @@ def command_parser():  # to parse the commands and call the appropriate function
             elif comm_list[1] == "table":
                 paren_start = comm.find("(")
                 paren_end = comm.find(")")
-                headings = comm[paren_start+1:paren_end]
+                headings = comm[paren_start:paren_end+1]
                 create_file(comm_list[-2], comm_list[-1], headings, comm)
 
             else:
