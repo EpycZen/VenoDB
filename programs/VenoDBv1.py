@@ -470,7 +470,7 @@ def command_parser():  # to parse the commands and call the appropriate function
     try:
         print()
         comm = input("VenoDB> ")
-        comm = comm.strip()
+        comm = comm.strip()  # to remove leading and trailing whitespace which causes bugs
         comm_list = comm.split(" ")
 
         # comm = true_comm
