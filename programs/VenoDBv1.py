@@ -84,11 +84,15 @@ def create_folder(database_name):
 
 
 # WORKS
-def create_file(file_name, database_name, headings):  # to create a file
+def create_file(file_name, database_name, headings, comm):  # to create a file
     direc = "data\\" + database_name
     cddir(direc)
     file_name += ".csv"
 
+    if "(" not in headings or ")" not in headings:
+        syntax_error(comm)
+        return
+        
     headings_final = headings.replace("(", "").replace(")", "")
 
     file_create(file_name, database_name, headings_final)
@@ -358,7 +362,6 @@ def alter_file(cmd1):  # to alter the file according to the options and paramete
 
 # WORKS
 def search_file(cmd, comm_list):  # to search for a particular record
-    # search column value file_name database_name
     database_name = comm_list[-1]
     file_name = comm_list[-2] + ".csv"
     just_file_name = comm_list[-2]
@@ -434,9 +437,6 @@ def delete_record(comm, comm_list):  # to delete a record using a provided condi
     database_name = comm_list[-1]
     file_name = comm_list[-2]
 
-
-    values = str_to_list(comm)
-
     log1 = cmd
     log_activity(log1)
 
@@ -493,7 +493,7 @@ def command_parser():  # to parse the commands and call the appropriate function
                 paren_start = comm.find("(")
                 paren_end = comm.find(")")
                 headings = comm[paren_start+1:paren_end]
-                create_file(comm_list[-2], comm_list[-1], headings)
+                create_file(comm_list[-2], comm_list[-1], headings, comm)
 
             else:
                 syntax_error(comm)
