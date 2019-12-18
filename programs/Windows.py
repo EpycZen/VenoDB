@@ -11,20 +11,8 @@ import subprocess
 installation_dir = ""
 
 
-def pause():  # just a normal pause. displays "Press any key to continue . . ."
-    os.system("pause")
-
-
-def paus():  # this is also a pause but it doesn't display anything
-    os.system("pause > nul")
-
-
 def clear():  # clears the command prompt screen
     os.system("cls")
-
-
-def color(str1):  # for selecting the color on the command prompt screen
-    os.system("color " + str1)
 
 
 def installation_directory():  # to set the installation directory from a file
@@ -57,6 +45,7 @@ def file_create(name, dbname, headings):  # creates an empty file in the current
         return -1
 
     with open(name, 'a') as f1:  # writes the heading (column name)
+        headings += "\n"
         f1.write(headings)
 
 

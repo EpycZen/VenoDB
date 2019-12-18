@@ -236,16 +236,10 @@ def insert(cmd1, cmd):  # to insert values into a file
     database_name = str(cmd1[-1])
     file_name = database_name + "\\" + str(cmd1[-2]) + ".csv"
 
-    values_start = cmd.find("[") # find the index of "[" which is at the start of the value list
-    values_end = cmd.find("]")  # find the index of "]" which is at the end of the value list
-    values = str(cmd[values_start+1:values_end])  # slice the command from "[" to "]"
-    values = values.replace("\"", "").replace("\'", "").replace("\n", "")  # clean up the values
+    values = cmd[cmd.find("[") + 1:cmd.find("]")]
 
-    if ", " in values:
-        values_list = list(values.split(", "))
-    else:
-        values_list = list(values.split(","))
-
+    values_list = values.strip("][").split(",")  # to convert string representation of list to list
+ 
     cddir("data")
     if os.path.isfile(file_name):
         fle = open(file_name, 'a', newline='')  # open the file
@@ -434,8 +428,15 @@ def drop_file(file_name, database_name):  # to drop a file(including the structu
     log_activity(log1)
 
 
-# NOT YET STARTED
-def delete_record(cmd):  # to delete a record using a provided condition
+# PARTIAL
+def delete_record(comm, comm_list):  # to delete a record using a provided condition
+    # delete [*, *, value, *, value] file_name database_name
+    database_name = comm_list[-1]
+    file_name = comm_list[-2]
+
+
+    values = str_to_list(comm)
+
     log1 = cmd
     log_activity(log1)
 
