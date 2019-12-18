@@ -92,7 +92,7 @@ def create_file(file_name, database_name, headings, comm):  # to create a file
     if "(" not in headings or ")" not in headings:
         syntax_error(comm)
         return
-        
+
     headings_final = headings.replace("(", "").replace(")", "")
 
     file_create(file_name, database_name, headings_final)
@@ -404,7 +404,7 @@ def search_file(cmd, comm_list):  # to search for a particular record
         print("0 rows having " + column_name + " = " + svalue + " in " + file_name + "\\" + database_name)
 
     for row in found_rows:
-        clean_found_rows.append(str(row).replace("[", "").replace("]", ""))
+        clean_found_rows.append(str(row).replace("[", "").replace("]", "").replace("\'", ""))
 
     print(*clean_found_rows, sep='\n')
 
