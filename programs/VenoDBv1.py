@@ -253,10 +253,7 @@ def insert(cmd1, cmd):  # to insert values into a file
         with open(file_name, "r", newline='') as f:
             rdr = csv.reader(f, dialect='myDialect')
             column = list(rdr)  # to read the first line (column headings)
-            column = column[0]
-
-        column = column.replace(", ", ",")
-        headings = column.strip("][").split(",")
+            headings = column[0]
 
         if len(values_list) == len(headings):
             fle = open(file_name, 'a', newline='')  # open the file
@@ -473,10 +470,7 @@ def delete_record(comm, comm_list):  # to delete a record using a provided condi
     with open(file_name, "r", newline='') as f:
         rdr = csv.reader(f, dialect='myDialect')
         column = list(rdr)
-        column = column[0]
-
-    column = column.replace(", ", ",")
-    headings = column.strip("][").split(",")
+        headings = column[0]
 
     if len(values_list) == len(headings):
         with open(file_name, "r", newline='') as src:
