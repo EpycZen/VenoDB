@@ -234,29 +234,33 @@ def insert(cmd1, cmd):  # to insert values into a file
     # Example:
     # insert [100, 'John Doe'] employee office
     # the values must be given in a list and strings must be enclosed within quotes
-    # the number of values inserted must be less than or equal to the number of columns
+    # the number of values inserted must be equal to the number of columns
     ###################################################################################################
     # insert a row to the file and save it
 
     database_name = str(cmd1[-1])
-    file_name = database_name + "\\" + str(cmd1[-2]) + ".csv"
+    file_name = str(cmd1[-2]) + ".csv"
+    cddir("data\\" + database_name)
+
+    csv.register_dialect('myDialect', skipinitialspace=True)
 
     values = cmd[cmd.find("[") + 1:cmd.find("]")]
     values = values.rstrip(",").rstrip(", ")
 
     values_list = values.strip("][").split(",")  # to convert string representation of list to list
  
-    cddir("data")
     if os.path.isfile(file_name):
         with open(file_name, "r", newline='') as f:
-            column = f.readline()  # to read the first line (column headings)
+            rdr = csv.reader(f, dialect='myDialect')
+            column = list(rdr)  # to read the first line (column headings)
+            column = column[0]
 
         column = column.replace(", ", ",")
         headings = column.strip("][").split(",")
 
         if len(values_list) == len(headings):
             fle = open(file_name, 'a', newline='')  # open the file
-            fl = csv.writer(fle)  # create an instance
+            fl = csv.writer(fle, dialect='myDialect')  # create an instance
             fl.writerow(values_list)  # and insert(append) the values_list
             fle.close()  # close the file
             print(values, "inserted into", file_name)
@@ -264,11 +268,11 @@ def insert(cmd1, cmd):  # to insert values into a file
         
         elif len(values_list) < len(headings):
             print("Please enter all the values")
-            log1 = file_name + " insertion failed"
+            log1 = file_name + "\\" + database_name + ": insertion failed"
 
         elif len(values_list) > len(headings):
             print("Please remove unwanted values")
-            log1 = file_name + " insertion failed" 
+            log1 = file_name + "\\" + database_name + ": insertion failed" 
 
     else:
         print(file_name , "does not exist")
@@ -453,7 +457,10 @@ def drop_file(file_name, database_name):  # to drop a file(including the structu
 def delete_record(comm, comm_list):  # to delete a record using a provided condition
     # delete [*, *, value, *, value] file_name database_name
     database_name = comm_list[-1]
-    file_name = comm_list[-2]
+    file_name = comm_list[-2] + ".csv"
+    cddir("data\\" + database_name)
+
+    csv.register_dialect('myDialect', skipinitialspace=True)
 
     startb = comm.find("[")
     endb = comm.find("]")
@@ -462,6 +469,22 @@ def delete_record(comm, comm_list):  # to delete a record using a provided condi
     values = values.replace(", ", ",")
 
     values_list = values_list.strip("][").split(",")
+
+    with open(file_name, "r", newline='') as f:
+        rdr = csv.reader(f, dialect='myDialect')
+        column = list(rdr)
+        column = column[0]
+
+    column = column.replace(", ", ",")
+    headings = column.strip("][").split(",")
+
+    if len(values_list) == len(headings):
+        with open(file_name, "r", newline='') as src:
+            lines = csv.reader
+
+    else:
+        print("The number of values given does not the match the number of columms")
+        log1 = file_name + "\\" + database_name + ": delete row failed"
 
     log1 = cmd
     log_activity(log1)
