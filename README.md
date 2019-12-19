@@ -20,7 +20,7 @@ VenoDB
   
 # VenoDB Commands:
 
-# help command:
+## help command:
         help
         -- shows help for all commands
 
