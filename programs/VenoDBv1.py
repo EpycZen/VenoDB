@@ -535,6 +535,75 @@ def show_license():  # to show the GNU General Public License Version 3 from the
 
 
 # WORKS
+def show_help():
+    command_help = '''
+help command:
+        help
+        -- shows help for all commands
+
+exit command:
+    exit
+        -- exits the program
+
+license command:
+    license
+        -- shows the GNU GPL 3.0 License
+
+list commands:
+    list
+    -- lists all the databases(folders)
+    list file <database>
+    -- lists all the files(tables) in a database
+
+show command:
+    show <file> <database>
+        -- shows all the records in a file
+
+version command:
+    version
+        -- shows the version of the program
+
+create commands:
+    create database <database>
+        -- creates a new database(folder)
+    create table <file> <database>
+        -- creates a new file(table) in a database
+
+insert command:
+    insert [value list] <file> <database>
+        -- inserts values in a file
+
+alter commands:
+    alter add <column name> <file> <database>
+        -- adds a new column
+    alter delete <column name> <file> <database>
+        -- deletes an existing column
+    alter rename <old column> <new column> <file> <database>
+        -- renames an existing column
+
+search command:
+    search <column name> <value> <file> <database>
+        -- shows all the records with matching column name and the value
+
+delete command:
+    delete [value list] <file> <database>
+        -- deletes all records matching the input
+
+drop commands:
+    drop table <file> <database>
+        -- deletes a file(table)
+    drop database <database>
+        -- deletes a database(folder)
+
+replace command:
+    replace [old values] [new values] <file> <database>
+        -- replaces old values with new values
+'''
+    print(command_help)
+    log_activity("Show help")
+    return
+
+# WORKS
 def command_parser():  # to parse the commands and call the appropriate functions
     try:
         print()
@@ -601,6 +670,9 @@ def command_parser():  # to parse the commands and call the appropriate function
         elif "replace" == token1[0:7]:
             replace_record(comm_list, comm)
 
+        elif "help" == token1[0:4]:
+            show_help()
+
         elif "exit" == token1[0:4]:
             program_exit()
 
@@ -646,18 +718,66 @@ main()
 ###################################################################################################
 # Commands:
 
+# help command:
+#   help
+#   -- shows help for all commands
+
+# exit command:
+#   exit
+#   -- exits the program
+
+# license command:
+#   license
+#   -- shows the GNU GPL 3.0 License
+
 # list commands:
 #   list
-#   list file <database name>
+#   -- lists all the databases(folders)
+#   list file <database>
+#   -- lists all the files(tables) in a database
 
 # show command:
-#   show <file name> <database name>
+#   show <file> <database>
+#   -- shows all the records in a file
 
 # version command:
 #   version
+#   -- shows the version of the program
 
-# create command:
-#   create database <database name>
-#   create table <file name> <database name>
+# create commands:
+#   create database <database>
+#   -- creates a new database(folder)
+#   create table <file> <database>
+#   -- creates a new file(table) in a database
+
+# insert command:
+#   insert [value list] <file> <database>
+#   -- inserts values in a file
+
+# alter commands:
+#   alter add <column name> <file> <database>
+#   -- adds a new column
+#   alter delete <column name> <file> <database>
+#   -- deletes an existing column
+#   alter rename <old column> <new column> <file> <database>
+#   -- renames an existing column
+
+# search command:
+#   search <column name> <value> <file> <database>
+#   -- shows all the records with matching column name and the value
+
+# delete command:
+#   delete [value list] <file> <database>
+#   -- deletes all records matching the input
+
+# drop commands:
+#   drop table <file> <database>
+#   -- deletes a file(table)
+#   drop database <database>
+#   -- deletes a database(folder)
+
+# replace command:
+#   replace [old values] [new values] <file> <database>
+#   -- replaces old values with new values
 
 ###################################################################################################
