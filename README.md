@@ -21,47 +21,47 @@ Structure Tree:
 # VenoDB Commands:
 
 ## help command:
-        *help*
+        help
         -- shows help for all commands
 
 ## exit command:
-    *exit*
+    exit
         -- exits the program
 
 ## license command:
-    *license*
+    license
         -- shows the GNU GPL 3.0 License
 
 ## list commands:
-    *list*
+    list
     -- lists all the databases(folders)
-    *list file <database>*
+    list file <database>
     -- lists all the files(tables) in a database
 
 ## show command:
-    *show <file> <database>*
+    show <file> <database>
         -- shows all the records in a file
 
 ## version command:
-    *version*
+    version
         -- shows the version of the program
 
 ## create commands:
-    *create database <database>*
+    create database <database>
         -- creates a new database(folder)
-    *create table <file> <database>*
+    create table <file> <database>
         -- creates a new file(table) in a database
 
 ## insert command:
-    *insert [value list] <file> <database>*
+    insert [value list] <file> <database>
         -- inserts values in a file
 
 ## alter commands:
-    *alter add <column name> <file> <database>*
+    alter add <column name> <file> <database>
         -- adds a new column
-    *alter delete <column name> <file> <database>*
+    alter delete <column name> <file> <database>
         -- deletes an existing column
-    *alter rename <old column> <new column> <file> <database>*
+    alter rename <old column> <new column> <file> <database>
         -- renames an existing column
 
 ## search command:
