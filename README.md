@@ -3,7 +3,8 @@
 ![Repo Size](https://img.shields.io/github/repo-size/EpycZen/VenoDB)
 ![Follow](https://img.shields.io/github/followers/EpycZen?style=social)
 
-![VenoDB](EpycZen.GitHub.com/VenoDB)
+Repo Website:
+[VenoDB](https://EpycZen.GitHub.com/VenoDB)
 
 # VenoDB
 A Python based **CSV DBMS**.
