@@ -24,39 +24,39 @@ VenoDB
         help
         -- shows help for all commands
 
-# exit command:
+## exit command:
     exit
         -- exits the program
 
-# license command:
+## license command:
     license
         -- shows the GNU GPL 3.0 License
 
-# list commands:
+## list commands:
     list
     -- lists all the databases(folders)
     list file <database>
     -- lists all the files(tables) in a database
 
-# show command:
+## show command:
     show <file> <database>
         -- shows all the records in a file
 
-# version command:
+## version command:
     version
         -- shows the version of the program
 
-# create commands:
+## create commands:
     create database <database>
         -- creates a new database(folder)
     create table <file> <database>
         -- creates a new file(table) in a database
 
-# insert command:
+## insert command:
     insert [value list] <file> <database>
         -- inserts values in a file
 
-# alter commands:
+## alter commands:
     alter add <column name> <file> <database>
         -- adds a new column
     alter delete <column name> <file> <database>
@@ -64,20 +64,20 @@ VenoDB
     alter rename <old column> <new column> <file> <database>
         -- renames an existing column
 
-# search command:
+## search command:
     search <column name> <value> <file> <database>
         -- shows all the records with matching column name and the value
 
-# delete command:
+## delete command:
     delete [value list] <file> <database>
         -- deletes all records matching the input
 
-# drop commands:
+## drop commands:
     drop table <file> <database>
         -- deletes a file(table)
     drop database <database>
         -- deletes a database(folder)
 
-# replace command:
+## replace command:
     replace [old values] [new values] <file> <database>
         -- replaces old values with new values
