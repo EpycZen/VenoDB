@@ -537,7 +537,7 @@ def show_license():  # to show the GNU General Public License Version 3 from the
 # WORKS
 def show_help():
     with open("HELP.txt", "r") as f:
-        command_help = f.readlines
+        command_help = f.read()
     
     print(command_help)
     log_activity("Show help")

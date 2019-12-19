@@ -104,7 +104,7 @@ def init():
 
     except OSError:
         print("Please check INSTALLATION_DIRECTORY.txt")
-        pause()
+        os.system("pause")
         exit()
 
     folders = ["data", "log", "programs"]
@@ -128,5 +128,5 @@ def init():
         else:
             p = 0
 
-    if p == 3:
+    if p == 4:
         return True
