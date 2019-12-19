@@ -20,29 +20,29 @@ VenoDB
   
 # VenoDB Commands:
 
-help command:
+# help command:
         help
         -- shows help for all commands
 
-exit command:
+# exit command:
     exit
         -- exits the program
 
-license command:
+# license command:
     license
         -- shows the GNU GPL 3.0 License
 
-list commands:
+# list commands:
     list
     -- lists all the databases(folders)
     list file <database>
     -- lists all the files(tables) in a database
 
-show command:
+# show command:
     show <file> <database>
         -- shows all the records in a file
 
-version command:
+# version command:
     version
         -- shows the version of the program
 
