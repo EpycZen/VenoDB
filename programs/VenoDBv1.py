@@ -477,18 +477,30 @@ def delete_record(comm, comm_list):  # to delete a record using a provided condi
             rdr = csv.reader(src, dialect='myDialect')
             lines = list(rdr)
 
-        print(lines)
+        # for some weird reasons, for loop doesn't work here
+        i = 0
+        check = 0
+        len1 = len(lines)
+        while i<len1:
+            if lines[i] == values_list:
+                check += 1
+                lines.pop(i)  # remove the occurences
+                len1 -= 1
+                continue
+            i += 1
 
-        for key, line in enumerate(lines):  # to delete the given records
-            if values_list == line:
-                lines.pop(key)
+        if check != 0:
+            res = open(file_name, "w", newline='')  # to write the modified records
+            wtr = csv.writer(res, dialect='myDialect')
+            wtr.writerows(lines)
+            res.close()
 
-        res = open(file_name, "w", newline='')  # to write the modified records
-        wtr = csv.writer(res, dialect='myDialect')
-        wtr.writerows(lines)
-        res.close()
+            print(f"{values_list} removed from {file_name}\\{database_name}")
+            log1 = str(values_list) + " removed from " + file_name + "\\" + database_name
 
-        log1 = str(values_list) + " removed from " + file_name + "\\" + database_name
+        else:
+            print(f"{values_list} not found in {file_name}\\{database_name}")
+            log1 = "Removing " + str(values_list) + " failed in " + file_name + "\\" + database_name
 
     else:
         print("The number of values given does not the match the number of columms")
