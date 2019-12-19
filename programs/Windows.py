@@ -108,7 +108,7 @@ def init():
         exit()
 
     folders = ["data", "log", "programs"]
-    files_in_programs = ["VenoDBv1.py", "Windows.py", "INSTALLATION_DIRECTORY.txt"]
+    files_in_programs = ["VenoDBv1.py", "Windows.py", "INSTALLATION_DIRECTORY.txt", "HELP.txt"]
 
     folder_list = str(subprocess.check_output("dir /b /ad", shell=True).decode('utf-8'))
 
