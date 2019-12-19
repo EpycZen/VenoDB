@@ -85,13 +85,13 @@ def create_folder(database_name):
 
 # WORKS
 def create_file(file_name, database_name, headings, comm):  # to create a file
-    direc = "data\\" + database_name
-    cddir(direc)
-    file_name += ".csv"
-
     if "(" not in headings or ")" not in headings:
         syntax_error(comm)
         return
+    
+    direc = "data\\" + database_name
+    check = cddir(direc)
+    file_name += ".csv"
 
     headings_final = headings.replace("(", "").replace(")", "")
 
@@ -450,7 +450,7 @@ def drop_file(file_name, database_name):  # to drop a file(including the structu
     log_activity(log1)
 
 
-# PARTIAL
+# WORKS
 def delete_record(comm, comm_list):  # to delete a record using a provided condition
     # delete [value list] file_name database_name
     database_name = comm_list[-1]
@@ -489,7 +489,7 @@ def delete_record(comm, comm_list):  # to delete a record using a provided condi
                 continue
             i += 1
 
-        if check != 0:
+        if check != 0:  # to check if there is a line matching the input
             res = open(file_name, "w", newline='')  # to write the modified records
             wtr = csv.writer(res, dialect='myDialect')
             wtr.writerows(lines)
@@ -641,3 +641,23 @@ def main():
 
 
 main()
+
+
+###################################################################################################
+# Commands:
+
+# list commands:
+#   list
+#   list file <database name>
+
+# show command:
+#   show <file name> <database name>
+
+# version command:
+#   version
+
+# create command:
+#   create database <database name>
+#   create table <file name> <database name>
+
+###################################################################################################
