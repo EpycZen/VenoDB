@@ -42,11 +42,13 @@ shows the GNU GPL 3.0 License
     list
 lists all the databases(folders)
 
-    list file <database>
+    list files <database>
+    example: list files employee_db
 lists all the files(tables) in a database
 
 ## show command:
     show <file> <database>
+    example: show grade_8 school_db
 shows all the records in a file
 
 ## version command:
@@ -55,40 +57,51 @@ shows the version of the program
 
 ## create commands:
     create database <database>
+    example: create database db_1
 creates a new database(folder)
 
     create table <file> <database>
+    example: create table grade_9 school_db
 creates a new file(table) in a database
 
 ## insert command:
     insert [value list] <file> <database>
+    example: insert [1, John Doe, M] employee office_db
 inserts values in a file
 
 ## alter commands:
     alter add <column name> <file> <database>
+    example: alter add age employee office_db
 adds a new column
 
     alter delete <column name> <file> <database>
+    example: alter delete email grade_6 school_db
 deletes an existing column
 
     alter rename <old column> <new column> <file> <database>
+    example: alter rename mail email employee office_db
 renames an existing column
 
 ## search command:
     search <column name> <value> <file> <database>
+    example: search id 5 employee office_db
 shows all the records with matching column name and the value
 
 ## delete command:
     delete [value list] <file> <database>
+    delete [3, Jeff Bezos] blue_origin world
 deletes all records matching the input
 
 ## drop commands:
     drop table <file> <database>
+    drop table blue_origin world
 deletes a file(table)
         
     drop database <database>
+    drop database flat_earth
 deletes a database(folder)
 
 ## replace command:
     replace [old values] [new values] <file> <database>
+    replace [1, Intel] [1, AMD] company world
 replaces old values with new values
